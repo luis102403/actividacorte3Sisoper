@@ -14,10 +14,10 @@ void* imprimir_rango(void* arg) {
     for (int i = r->inicio; i <= r->fin; i++) {
         printf("%d ", i);
     }
-    // Opcional: imprimir un salto de línea para separar salidas o visualizar mejor
-    // printf("\n"); 
     
-    pthread_exit(NULL); // Finalizamos el hilo
+    printf("\n"); 
+    
+    pthread_exit(NULL); 
 }
 
 int main() {
@@ -32,7 +32,6 @@ int main() {
 
     // TODO 3: crear los hilos usando pthread_create
     for (int i = 0; i < 3; i++) {
-        // Pasamos la dirección de memoria del rango correspondiente (&rangos[i])
         if (pthread_create(&hilos[i], NULL, imprimir_rango, &rangos[i]) != 0) {
             perror("Error al crear el hilo");
             return 1;
@@ -41,7 +40,7 @@ int main() {
 
     // TODO 4: sincronizar usando pthread_join
     for (int i = 0; i < 3; i++) {
-        pthread_join(hilos[i], NULL); // El proceso principal espera a que cada hilo termine
+        pthread_join(hilos[i], NULL); 
     }
 
     printf("\nTodos los hilos han terminado.\n");
