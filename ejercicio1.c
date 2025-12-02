@@ -9,7 +9,7 @@ typedef struct {
 
 void* imprimir_rango(void* arg) {
     // TODO 1: recibir los datos enviados al hilo
-    Rango* r = (Rango*)arg; // Casteamos el argumento a puntero de Rango
+    Rango* r = (Rango*)arg;
     
     for (int i = r->inicio; i <= r->fin; i++) {
         printf("%d ", i);
