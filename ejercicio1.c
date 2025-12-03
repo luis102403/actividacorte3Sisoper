@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <pthread.h>
 
-// Definición de la estructura 
 typedef struct {
     int inicio;
     int fin;
@@ -14,9 +13,7 @@ void* imprimir_rango(void* arg) {
     for (int i = r->inicio; i <= r->fin; i++) {
         printf("%d ", i);
     }
-    
     printf("\n"); 
-    
     pthread_exit(NULL); 
 }
 
@@ -43,6 +40,6 @@ int main() {
         pthread_join(hilos[i], NULL); 
     }
 
-    printf("\nTodos los hilos han terminado.\n");
+    printf("\nlos hilos terminados");
     return 0;
 }
