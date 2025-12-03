@@ -12,14 +12,13 @@
 int main() {
 
     // --- TODO 1: Crear memoria compartida ---
-    // 1. Crear el objeto de memoria compartida
     int fd = shm_open(SHM_NAME, O_CREAT | O_RDWR, 0666);
     if (fd == -1) { perror("Error en shm_open"); return 1; }
 
-    // 2. Configurar el tamaño (espacio para 4 long long)
+    // 2. Configurar el tamaño
     if (ftruncate(fd, PROCESOS * sizeof(long long)) == -1) { perror("Error en ftruncate"); return 1; }
 
-    // 3. Mapear la memoria al espacio de direcciones del proceso
+    // 3. Mapear la memoria
     long long* shm = mmap(NULL, PROCESOS * sizeof(long long), 
                           PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
     if (shm == MAP_FAILED) { perror("Error en mmap"); return 1; }
@@ -52,15 +51,13 @@ int main() {
             printf("Proceso %d calculó suma parcial: %lld\n", p, suma_parcial);
 
             // --- TODO 3: Guardar en memoria compartida ---
-            // Usamos el índice 'p' para que cada proceso escriba en su ranura
+            
             shm[p] = suma_parcial;
-
-            exit(0); // Importante: terminar el proceso hijo aquí
+            exit(0); 
         }
     }
 
     // --- TODO 4: Esperar a todos los procesos hijo ---
-    // Hacemos un bucle para esperar 4 veces (una por cada hijo)
     for (int i = 0; i < PROCESOS; i++) {
         wait(NULL);
     }
@@ -68,19 +65,18 @@ int main() {
     long long suma_total = 0;
 
     // --- TODO 5: Acumular resultados desde memoria compartida ---
-    // El padre lee lo que los hijos escribieron en la memoria mapeada
+
     for (int i = 0; i < PROCESOS; i++) {
         suma_total += shm[i];
     }
 
     printf("Suma total = %lld\n", suma_total);
-    // Verificación matemática (fórmula de Gauss n*(n+1)/2)
     long long esperada = (long long)N * (N + 1) / 2;
     printf("Suma esperada = %lld\n", esperada);
 
     // --- TODO 6: Liberar memoria compartida ---
-    munmap(shm, PROCESOS * sizeof(long long)); // Desmapear del proceso
-    shm_unlink(SHM_NAME); // Borrar el objeto del sistema
+    munmap(shm, PROCESOS * sizeof(long long)); 
+    shm_unlink(SHM_NAME); 
 
     return 0;
 }
