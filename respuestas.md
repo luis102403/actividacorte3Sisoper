@@ -1,6 +1,6 @@
-**Respuestas a las preguntas teóricas ejercicio 1**
+******Respuestas a las preguntas teóricas ejercicio 1****
 
-##¿Qué diferencia principal existe entre un proceso y un hilo? 
+**¿Qué diferencia principal existe entre un proceso y un hilo?**
 La principal diferencia radica en la memoria. Un proceso es una instancia de un programa en ejecución con su propio espacio de memoria 
 independiente (código, datos, heap, stack). Un hilo (o thread) es la unidad de ejecución dentro de un proceso; 
 los hilos de un mismo proceso comparten el espacio de memoria (variables globales, heap) y recursos (archivos abiertos), 
