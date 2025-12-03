@@ -30,7 +30,7 @@ En un sistema con 4+ núcleos, los 4 procesos corren verdaderamente en paralelo.
 
 2. ¿Diferencia entre fork() y pthread_create()?
 
-| `fork()`                                                      | `pthread_create()`                                 |
+| fork()                                                        | pthread_create()                                   |
 | ------------------------------------------------------------- | -------------------------------------------------- |
 | Crea procesos independientes.                                 | Crea hilos dentro del mismo proceso.               |
 | Cada proceso tiene **su propio espacio de memoria**.          | Todos los hilos comparten la misma memoria.        |
