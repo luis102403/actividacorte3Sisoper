@@ -7,7 +7,7 @@
 
 #define N 1000000
 #define PROCESOS 4
-#define SHM_NAME "/shm_suma_total" // Nombre identificador para la memoria
+#define SHM_NAME "/shm_suma_total" 
 
 int main() {
 
