@@ -12,8 +12,11 @@ del sistema operativo alterna la ejecución de los hilos. Esto puede llevar a da
 del programa.
 
 **¿Qué función se usa para esperar la finalización de un hilo?**
-La función es pthread_join. Esta función bloquea al hilo que la llama (usualmente el hilo principal o main) hasta que el hilo especificado 
-como argumento termine su ejecución.
+pthread_join(hilo, NULL);
+Se usa para:
+
+- Esperar que el hilo termine.
+- Evitar que el programa finalice antes de que los hilos impriman todo.
 
 **¿Qué técnica usaría para evitar condiciones de carrera?**
 Se utilizan mecanismos de sincronización. El más común es el Mutex (Exclusión Mutua), que permite bloquear una sección crítica de código 
