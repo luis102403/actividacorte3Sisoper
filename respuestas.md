@@ -1,4 +1,4 @@
-******Respuestas a las preguntas teóricas ejercicio 1****
+**Respuestas a las preguntas teóricas ejercicio 1**
 
 **¿Qué diferencia principal existe entre un proceso y un hilo?**
 La principal diferencia radica en la memoria. Un proceso es una instancia de un programa en ejecución con su propio espacio de memoria 
@@ -18,20 +18,20 @@ Se usa para:
 - Evitar que el programa finalice antes de que los hilos impriman todo.
 
 **¿Qué técnica usaría para evitar condiciones de carrera?**
-*
+
 Se utilizan mecanismos de sincronización. El más común es el Mutex, que permite bloquear una sección crítica de código 
-para que solo un hilo pueda acceder a la variable compartida a la vez. tambien exiten otros vistos en clase como semáforos, variables de condición  y tambien el uso 
-de operaciones atómicas
+para que solo un hilo pueda acceder a la variable compartida a la vez. tambien exiten otros vistos en clase como semáforos, variables de condición  y tambien el uso de operaciones atómicas
 
 
 **Respuestas a las preguntas ejercicio #2**
-¿Por qué este ejercicio es paralelo y no solo concurrente?
+
+**¿Por qué este ejercicio es paralelo y no solo concurrente?**
 Es paralelo porque los 4 procesos ejecutan simultáneamente en diferentes núcleos del CPU. Cada proceso realiza trabajo real al mismo tiempo que los otros.
 Concurrencia: Múltiples tareas progresan 
 Paralelismo: Múltiples tareas ejecutan simultáneamente (múltiples CPUs)
 En un sistema con 4+ núcleos, los 4 procesos corren verdaderamente en paralelo.
 
-2. ¿Diferencia entre fork() y pthread_create()?
+**¿Diferencia entre fork() y pthread_create()?**
 
 | fork()                                                        | pthread_create()                                   |
 | ------------------------------------------------------------- | -------------------------------------------------- |
@@ -43,12 +43,17 @@ En un sistema con 4+ núcleos, los 4 procesos corren verdaderamente en paralelo.
 
 **¿Por qué se necesita memoria compartida y no una variable global?**
 
-Porque después de hacer un fork(), el sistema operativo duplica el espacio de memoria. Si usaras una variable global normal int suma, el hijo tendría una 
-copia de esa variable. Si el hijo modifica su copia, la variable del padre no se entera y permanece en 0. La memoria compartida (mmap) es necesaria para
-crear una zona física de RAM que ambos procesos puedan ver y modificar.
+Cuando usamos fork() para crear procesos hijos, cada proceso hijo recibe una copia independiente de todo el espacio de memoria del proceso padre. Esto significa que las variables globales no son compartidas entre el padre y los hijos.
+Cuando usamos fork():
+
+- El proceso hijo recibe una copia del espacio de memoria del padre
+- Las variables globales son independientes en cada proceso
+- Modificar una variable en el hijo NO afecta al padre
 
 **¿Qué función se usa para esperar a un proceso hijo?**
-Se usa la función wait(NULL) (espera a cualquiera de los hijos) o waitpid() (espera a un hijo específico por su ID).
+Se usa la función: 
+- wait(NULL) (espera a cualquiera de los hijos) 
+- waitpid() (espera a un hijo específico por su ID).
 
 
 
