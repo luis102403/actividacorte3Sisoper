@@ -46,6 +46,7 @@ En un sistema con 4+ núcleos, los 4 procesos corren verdaderamente en paralelo.
 **¿Por qué se necesita memoria compartida y no una variable global?**
 
 Cuando usamos fork() para crear procesos hijos, cada proceso hijo recibe una copia independiente de todo el espacio de memoria del proceso padre. Esto significa que las variables globales no son compartidas entre el padre y los hijos.
+
 Cuando usamos fork():
 
 - El proceso hijo recibe una copia del espacio de memoria del padre
