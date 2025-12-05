@@ -9,6 +9,8 @@ aunque cada uno tiene su propia pila y registros. Debido a esto, los hilos son m
 
 Ocurre una condición de carrera (race condition). El resultado final de la variable depende del orden impredecible en que el planificador 
 del sistema operativo alterna la ejecución de los hilos. Esto puede llevar a generan errores difíciles de reproducir.
+
+
 **¿Qué función se usa para esperar la finalización de un hilo?**
 
 pthread_join(hilo, NULL);
